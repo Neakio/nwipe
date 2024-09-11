@@ -59,6 +59,7 @@
  */
 
 const char* nwipe_dod522022m_label = "DoD 5220.22-M";
+//const char* nwipe_pfitzner_label = "nwipe_pfitzner"
 const char* nwipe_dodshort_label = "DoD Short";
 const char* nwipe_gutmann_label = "Gutmann Wipe";
 const char* nwipe_ops2_label = "RCMP TSSIT OPS-II";
@@ -82,6 +83,12 @@ const char* nwipe_method_label( void* method )
     {
         return nwipe_dod522022m_label;
     }
+    /*
+    if( method ==&nwipe_pfitzner )
+    {
+        return nwipe_pfitzner_label; 
+    }
+    */
     if( method == &nwipe_dodshort )
     {
         return nwipe_dodshort_label;
@@ -123,6 +130,51 @@ const char* nwipe_method_label( void* method )
     return nwipe_unknown_label;
 
 } /* nwipe_method_label */
+
+void* nwipe_pfitzner( void* ptr )
+{
+    /**
+     * Fill the device with zeroes.
+     */
+
+    nwipe_context_t* c;
+    c = (nwipe_context_t*) ptr;
+
+    /* get current time at the start of the wipe  */
+    time( &c->start_time );
+
+    /* set wipe in progress flag for GUI */
+    c->wipe_status = 1;
+
+    // Define the 7-pass Pfitzner method patterns
+    char zerofill[1] = { '\x00' };
+    char onefill[1] = { '\xFF' };
+    char pattern_55[1] = { '\x55' };
+    char pattern_AA[1] = { '\xAA' };
+
+    nwipe_pattern_t patterns[] = {
+        { 1, NULL },         // Pass 1: Random data
+        { 1, &zerofill[0] }, // Pass 2: 0s (0x00)
+        { 1, &onefill[0] },  // Pass 3: 1s (0xFF)
+        { 1, NULL },         // Pass 4: Random data
+        { 1, &pattern_55[0] }, // Pass 5: 01010101 (0x55)
+        { 1, &pattern_AA[0] }, // Pass 6: 10101010 (0xAA)
+        { 1, NULL },         // Pass 7: Random data
+        { 0, NULL }          // End of patterns
+    };
+
+    /* Run the method. */
+    c->result = nwipe_runmethod( c, patterns );
+
+    /* Finished. Set the wipe_status flag so that the GUI knows */
+    c->wipe_status = 0;
+
+    /* get current time at the end of the wipe  */
+    time( &c->end_time );
+
+    return NULL;
+} /* pfitzner */
+
 
 void* nwipe_zero( void* ptr )
 {
