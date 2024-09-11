@@ -147,19 +147,16 @@ void* nwipe_pfitzner( void* ptr )
     c->wipe_status = 1;
 
     // Define the 7-pass Pfitzner method patterns
-    char zerofill[1] = { '\x00' };
-    char onefill[1] = { '\xFF' };
-    char pattern_55[1] = { '\x55' };
-    char pattern_AA[1] = { '\xAA' };
+    char list[4] = { '\x00', '\xFF', '\x55', '\xAA'};
 
     nwipe_pattern_t patterns[] = {
-        { 1, NULL },         // Pass 1: Random data
-        { 1, &zerofill[0] }, // Pass 2: 0s (0x00)
-        { 1, &onefill[0] },  // Pass 3: 1s (0xFF)
+        { -1, ""},         // Pass 1: Random data
+        { 1, &list[0] }, // Pass 2: 0s (0x00)
+        { 1, &list[1] },  // Pass 3: 1s (0xFF)
         { 1, NULL },         // Pass 4: Random data
-        { 1, &pattern_55[0] }, // Pass 5: 01010101 (0x55)
-        { 1, &pattern_AA[0] }, // Pass 6: 10101010 (0xAA)
-        { 1, NULL },         // Pass 7: Random data
+        { 1, &list[2] }, // Pass 5: 01010101 (0x55)
+        { 1, &list[3] }, // Pass 6: 10101010 (0xAA)
+        { -1, "" },         // Pass 7: Random data
         { 0, NULL }          // End of patterns
     };
 
