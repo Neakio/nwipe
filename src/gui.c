@@ -2304,6 +2304,10 @@ void nwipe_gui_method( void )
     {
         focus = 0;
     }
+    if ( nwipe_options.method == &nwipe_pfitzner )
+    {
+        focus = 0;
+    }
     if( nwipe_options.method == &nwipe_one )
     {
         focus = 1;
@@ -2353,6 +2357,7 @@ void nwipe_gui_method( void )
 
         /* Print the options. */
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_zero ) );
+        mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_pfitzner) );
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_one ) );
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_ops2 ) );
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_dodshort ) );
@@ -2592,6 +2597,9 @@ void nwipe_gui_method( void )
         case 9:
             nwipe_options.method = &nwipe_is5enh;
             break;
+        
+        case 10:
+            nwipe_options.method = &nwipe_pfitzner;
     }
 
 } /* nwipe_gui_method */

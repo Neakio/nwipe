@@ -51,6 +51,7 @@ void* nwipe_ops2( void* ptr );
 void* nwipe_is5enh( void* ptr );
 void* nwipe_random( void* ptr );
 void* nwipe_zero( void* ptr );
+void* nwipe_pfitzner( void* ptr );
 void* nwipe_one( void* ptr );
 void* nwipe_verify_zero( void* ptr );
 void* nwipe_verify_one( void* ptr );

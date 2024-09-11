@@ -1268,6 +1268,7 @@ void calculate_round_size( nwipe_context_t* c )
      * statement.
      */
     void* array_methods[] = { &nwipe_zero,
+                              &nwipe_pfitzner,
                               &nwipe_ops2,
                               &nwipe_dodshort,
                               &nwipe_dod522022m,
