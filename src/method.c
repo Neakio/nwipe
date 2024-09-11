@@ -62,7 +62,7 @@ const char* nwipe_dod522022m_label = "DoD 5220.22-M";
 const char* nwipe_dodshort_label = "DoD Short";
 const char* nwipe_gutmann_label = "Gutmann Wipe";
 const char* nwipe_ops2_label = "RCMP TSSIT OPS-II";
-const char* nwipe_ops2_alt_label = "RCMP TSSIT OPS-II Alternative";
+const char* nwipe_ops2_alt_label = "RCMP TSSIT OPS-II Alt";
 const char* nwipe_random_label = "PRNG Stream";
 const char* nwipe_zero_label = "Fill With Zeros";
 const char* nwipe_one_label = "Fill With Ones";
@@ -70,7 +70,7 @@ const char* nwipe_verify_zero_label = "Verify Zeros (0x00)";
 const char* nwipe_verify_one_label = "Verify Ones  (0xFF)";
 const char* nwipe_is5enh_label = "HMG IS5 Enhanced";
 const char* nwipe_vsitr_label = "German Standard VSITR";
-const char* nwipe_vsitr_alt_label = "German Standard VSITR Alternative";
+const char* nwipe_vsitr_alt_label = "German Standard VSITR Alt";
 
 const char* nwipe_unknown_label = "Unknown Method (FIXME)";
 

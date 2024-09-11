@@ -2621,31 +2621,43 @@ void nwipe_gui_method( void )
             break;
 
         case 3:
-            nwipe_options.method = &nwipe_dodshort;
+            nwipe_options.method = &nwipe_ops2_alt;
             break;
 
         case 4:
-            nwipe_options.method = &nwipe_dod522022m;
+            nwipe_options.method = &nwipe_dodshort;
             break;
 
         case 5:
-            nwipe_options.method = &nwipe_gutmann;
+            nwipe_options.method = &nwipe_dod522022m;
             break;
 
         case 6:
-            nwipe_options.method = &nwipe_random;
+            nwipe_options.method = &nwipe_gutmann;
             break;
 
         case 7:
-            nwipe_options.method = &nwipe_verify_zero;
+            nwipe_options.method = &nwipe_random;
             break;
 
         case 8:
-            nwipe_options.method = &nwipe_verify_one;
+            nwipe_options.method = &nwipe_verify_zero;
             break;
 
         case 9:
+            nwipe_options.method = &nwipe_verify_one;
+            break;
+
+        case 10:
             nwipe_options.method = &nwipe_is5enh;
+            break;
+
+        case 11:
+            nwipe_options.method = &nwipe_vsitr;
+            break;
+
+        case 12:
+            nwipe_options.method = &nwipe_vsitr_alt;
             break;
     }
 
