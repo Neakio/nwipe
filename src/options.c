@@ -350,6 +350,12 @@ int nwipe_options_parse( int argc, char** argv )
                     break;
                 }
 
+                if( strcmp( optarg, "ops2_alt" ) == 0 )
+                {
+                    nwipe_options.method = &nwipe_ops2_alt;
+                    break;
+                }
+
                 if( strcmp( optarg, "random" ) == 0 || strcmp( optarg, "prng" ) == 0
                     || strcmp( optarg, "stream" ) == 0 )
                 {
@@ -384,6 +390,18 @@ int nwipe_options_parse( int argc, char** argv )
                 if( strcmp( optarg, "is5enh" ) == 0 )
                 {
                     nwipe_options.method = &nwipe_is5enh;
+                    break;
+                }
+
+                if( strcmp( optarg, "vsitr" ) == 0 )
+                {
+                    nwipe_options.method = &nwipe_vsitr;
+                    break;
+                }
+
+                if( strcmp( optarg, "vsitr_alt" ) == 0 )
+                {
+                    nwipe_options.method = &nwipe_vsitr_alt;
                     break;
                 }
 
