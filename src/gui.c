@@ -2530,7 +2530,7 @@ void nwipe_gui_method( void )
 
                 mvwprintw( main_window, 2, tab2, "Security Level: high (7 passes)" );
 
-                mvwprintw( main_window, 4, tab2, "Bundesamt für Sicherheit in der IT               " );
+                mvwprintw( main_window, 4, tab2, "Bundesamt für Sicherheit in der IT              " );
                 mvwprintw( main_window, 5, tab2, "Verschlusssache IT Richtlinien (VSITR)           " );
                 mvwprintw( main_window, 6, tab2, "                                                 " );
                 mvwprintw( main_window, 7, tab2, "                                                 " );
@@ -2544,7 +2544,7 @@ void nwipe_gui_method( void )
 
                 mvwprintw( main_window, 2, tab2, "Security Level: high (7 passes)" );
 
-                mvwprintw( main_window, 4, tab2, "Bundesamt für Sicherheit in der IT               " );
+                mvwprintw( main_window, 4, tab2, "Bundesamt für Sicherheit in der IT              " );
                 mvwprintw( main_window, 5, tab2, "Verschlusssache IT Richtlinien (VSITR)           " );
                 mvwprintw( main_window, 6, tab2, "                                                 " );
                 mvwprintw( main_window, 7, tab2, "                                                 " );
