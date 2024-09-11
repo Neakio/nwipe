@@ -59,7 +59,7 @@
  */
 
 const char* nwipe_dod522022m_label = "DoD 5220.22-M";
-//const char* nwipe_pfitzner_label = "nwipe_pfitzner"
+const char* nwipe_pfitzner_label = "nwipe_pfitzner"
 const char* nwipe_dodshort_label = "DoD Short";
 const char* nwipe_gutmann_label = "Gutmann Wipe";
 const char* nwipe_ops2_label = "RCMP TSSIT OPS-II";
@@ -83,12 +83,10 @@ const char* nwipe_method_label( void* method )
     {
         return nwipe_dod522022m_label;
     }
-    /*
     if( method ==&nwipe_pfitzner )
     {
         return nwipe_pfitzner_label; 
     }
-    */
     if( method == &nwipe_dodshort )
     {
         return nwipe_dodshort_label;
