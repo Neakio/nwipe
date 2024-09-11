@@ -2278,7 +2278,7 @@ void nwipe_gui_method( void )
     extern int terminate_signal;
 
     /* The number of implemented methods. */
-    const int count = 10;
+    const int count = 13;
 
     /* The first tabstop. */
     const int tab1 = 2;
