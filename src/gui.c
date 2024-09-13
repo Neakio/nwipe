@@ -2304,10 +2304,6 @@ void nwipe_gui_method( void )
     {
         focus = 0;
     }
-    if ( nwipe_options.method == &nwipe_pfitzner )
-    {
-        focus = 0;
-    }
     if( nwipe_options.method == &nwipe_one )
     {
         focus = 1;
@@ -2344,7 +2340,10 @@ void nwipe_gui_method( void )
     {
         focus = 9;
     }
-
+    if ( nwipe_options.method == &nwipe_pfitzner )
+    {
+        focus = 10;
+    }
     do
     {
         /* Clear the main window. */
