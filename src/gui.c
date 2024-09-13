@@ -2357,7 +2357,6 @@ void nwipe_gui_method( void )
 
         /* Print the options. */
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_zero ) );
-        mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_pfitzner) );
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_one ) );
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_ops2 ) );
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_dodshort ) );
@@ -2367,6 +2366,7 @@ void nwipe_gui_method( void )
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_verify_zero ) );
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_verify_one ) );
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_is5enh ) );
+        mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_pfitzner) );
         mvwprintw( main_window, yy++, tab1, "                                             " );
 
         /* Print the cursor. */
@@ -2502,6 +2502,23 @@ void nwipe_gui_method( void )
                 mvwprintw( main_window, 10, tab2, "device to verify the PRNG stream was             " );
                 mvwprintw( main_window, 11, tab2, "successfully written.                            " );
                 break;
+            
+            case 10:
+
+                mvwprintw( main_window, 2, tab2, "Security Level: higher (7 passes)" );
+
+                mvwprintw( main_window, 3, tab2, "Pfitzner of Roy Pfitzner         " );
+                mvwprintw( main_window, 4, tab2, "standard wipe.                                   " );
+                mvwprintw( main_window, 5, tab2, "                                                 " );
+                mvwprintw( main_window, 6, tab2, "Pass 1: Overwrite with random data               " );
+                mvwprintw( main_window, 7, tab2, "Pass 2: Overwrite with 0x00 (all zeros)          " );
+                mvwprintw( main_window, 8, tab2, "Pass 3: Overwrite with 0xFF (all ones)           " );
+                mvwprintw( main_window, 9, tab2, "Pass 4: Overwrite with random data               " );
+                mvwprintw( main_window, 10, tab2, "Pass 5: Overwrite with 0x55 (alternating 01010101) " );
+                mvwprintw( main_window, 11, tab2, "Pass 6: Overwrite with 0xAA (alternating 10101010) " );
+                mvwprintw( main_window, 12, tab2, "Pass 7: Final overwrite with random data.       " );
+                break;
+
 
         } /* switch */
 
