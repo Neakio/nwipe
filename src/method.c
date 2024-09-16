@@ -62,6 +62,7 @@ const char* nwipe_dod522022m_label = "DoD 5220.22-M";
 const char* nwipe_dodshort_label = "DoD Short";
 const char* nwipe_gutmann_label = "Gutmann Wipe";
 const char* nwipe_ops2_label = "RCMP TSSIT OPS-II";
+const char* nwipe_ops2_alt_label = "RCMP TSSIT OPS-II Alt";
 const char* nwipe_random_label = "PRNG Stream";
 const char* nwipe_zero_label = "Fill With Zeros";
 const char* nwipe_one_label = "Fill With Ones";
@@ -69,6 +70,8 @@ const char* nwipe_verify_zero_label = "Verify Zeros (0x00)";
 const char* nwipe_verify_one_label = "Verify Ones  (0xFF)";
 const char* nwipe_is5enh_label = "HMG IS5 Enhanced";
 const char* nwipe_pfitzner_label = "Pfitzner Method(7 Pass)";
+const char* nwipe_vsitr_label = "German Standard VSITR";
+const char* nwipe_vsitr_alt_label = "German Standard VSITR Alt";
 
 const char* nwipe_unknown_label = "Unknown Method (FIXME)";
 
@@ -83,10 +86,6 @@ const char* nwipe_method_label( void* method )
     {
         return nwipe_dod522022m_label;
     }
-    if( method ==&nwipe_pfitzner )
-    {
-        return nwipe_pfitzner_label; 
-    }
     if( method == &nwipe_dodshort )
     {
         return nwipe_dodshort_label;
@@ -98,6 +97,10 @@ const char* nwipe_method_label( void* method )
     if( method == &nwipe_ops2 )
     {
         return nwipe_ops2_label;
+    }
+    if( method == &nwipe_ops2_alt )
+    {
+        return nwipe_ops2_alt_label;
     }
     if( method == &nwipe_random )
     {
@@ -122,6 +125,18 @@ const char* nwipe_method_label( void* method )
     if( method == &nwipe_is5enh )
     {
         return nwipe_is5enh_label;
+    }
+    if( method ==&nwipe_pfitzner )
+    {
+        return nwipe_pfitzner_label; 
+    }
+    if( method == &nwipe_vsitr )
+    {
+        return nwipe_vsitr_label;
+    }
+    if( method == &nwipe_vsitr_alt )
+    {
+        return nwipe_vsitr_alt_label;
     }
 
     /* else */
@@ -742,6 +757,36 @@ void* nwipe_ops2( void* ptr )
     return NULL;
 } /* nwipe_ops2 */
 
+void* nwipe_ops2_alt( void* ptr )
+{
+    nwipe_context_t* c = (nwipe_context_t*) ptr;
+
+    /* get current time at the start of the wipe  */
+    time( &c->start_time );
+
+    c->wipe_status = 1;
+
+    char ops2_alt[9] = { '\xFF', '\xFE', '\xFD', '\xFB', '\xF7', '\xEF', '\xDF', '\xBF', '\x7F' };
+    nwipe_pattern_t patterns[] = { { 1, &ops2_alt[0] },  // Pass 1
+                                   { 1, &ops2_alt[1] },  // Pass 2
+                                   { 1, &ops2_alt[2] },  // Pass 3
+                                   { 1, &ops2_alt[3] },  // Pass 4
+                                   { 1, &ops2_alt[4] },  // Pass 5
+                                   { 1, &ops2_alt[5] },  // Pass 6
+                                   { 1, &ops2_alt[6] },  // Pass 7
+                                   { 1, &ops2_alt[7] },  // Pass 8
+                                   { 1, &ops2_alt[8] },  // Pass 9
+                                   { 0, NULL } };
+    c->result = nwipe_runmethod( c, patterns );
+
+    c->wipe_status = 0;
+
+    /* get current time at the end of the wipe  */
+    time( &c->end_time );
+
+    return NULL;
+} /* nwipe_ops2_alt */
+
 void* nwipe_is5enh( void* ptr )
 {
     nwipe_context_t* c = (nwipe_context_t*) ptr;
@@ -765,6 +810,107 @@ void* nwipe_is5enh( void* ptr )
 
     return NULL;
 } /* nwipe_is5enh */
+
+void* nwipe_vsitr( void* ptr )
+{
+    nwipe_context_t* c = (nwipe_context_t*) ptr;
+
+    /* get current time at the start of the wipe  */
+    time( &c->start_time );
+
+    c->wipe_status = 1;
+
+    char vsitr[3] = { '\x00', '\xFF', '\xAA' };
+    nwipe_pattern_t patterns[] = { { 1, &vsitr[0] },  // Pass 1: 0
+                                   { 1, &vsitr[1] },  // Pass 2: 1
+                                   { 1, &vsitr[0] },  // Pass 3: 0
+                                   { 1, &vsitr[1] },  // Pass 4: 1
+                                   { 1, &vsitr[0] },  // Pass 5: 0
+                                   { 1, &vsitr[1] },  // Pass 6: 1
+                                   { 1, &vsitr[2] },  // Pass 7: A
+                                   { 0, NULL } };
+    c->result = nwipe_runmethod( c, patterns );
+
+    c->wipe_status = 0;
+
+    /* get current time at the end of the wipe  */
+    time( &c->end_time );
+
+    return NULL;
+} /* nwipe_vsitr */
+
+void* nwipe_vsitr_alt( void* ptr )
+{
+    /**
+     * 
+     *
+     */
+
+    nwipe_context_t* c;
+    c = (nwipe_context_t*) ptr;
+
+    /* get current time at the start of the wipe  */
+    time( &c->start_time );
+
+    /* set wipe in progress flag for GUI */
+    c->wipe_status = 1;
+
+    /* A result holder. */
+    int r;
+
+    /* Random characters.*/
+    char vsitr[6];
+
+    nwipe_pattern_t patterns[] = { { 1, &vsitr[0] },  // Pass 1: A random character.
+                                   { 1, &vsitr[1] },  // Pass 2: The bitwise complement of pass 1.
+                                   { 1, &vsitr[2] },  // Pass 3: A random character.
+                                   { 1, &vsitr[3] },  // Pass 4: The bitwise complement of pass 3.
+                                   { 1, &vsitr[4] },  // Pass 5: A random character.
+                                   { 1, &vsitr[5] },  // Pass 6: The bitwise complement of pass 5.
+                                   { -1, "" },  // Pass 7: A random stream.
+                                   { 0, NULL } };
+
+    /* Load the array with random characters. */
+    r = read( c->entropy_fd, &vsitr, sizeof( vsitr ) );
+
+    /* Check the result. */
+    if( r != sizeof( vsitr ) )
+    {
+        r = errno;
+        nwipe_perror( r, __FUNCTION__, "read" );
+        nwipe_log( NWIPE_LOG_FATAL, "Unable to seed the %s method.", nwipe_vsitr_alt_label );
+
+        /* Ensure a negative return. */
+        if( r < 0 )
+        {
+            c->result = r;
+            return NULL;
+        }
+        else
+        {
+            c->result = -1;
+            return NULL;
+        }
+    }
+
+    /* Pass 2 is the bitwise complement of Pass 1. */
+    vsitr[1] = ~vsitr[0];
+    /* Pass 4 is the bitwise complement of Pass 3. */
+    vsitr[3] = ~vsitr[2];
+    /* Pass 6 is the bitwise complement of Pass 5. */
+    vsitr[5] = ~vsitr[4];
+
+    /* Run the vsitr_alt method. */
+    c->result = nwipe_runmethod( c, patterns );
+
+    /* Finished. Set the wipe_status flag so that the GUI knows */
+    c->wipe_status = 0;
+
+    /* get current time at the end of the wipe  */
+    time( &c->end_time );
+
+    return NULL;
+} /* nwipe_vsitr_alt */
 
 void* nwipe_random( void* ptr )
 {

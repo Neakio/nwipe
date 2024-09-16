@@ -2278,7 +2278,7 @@ void nwipe_gui_method( void )
     extern int terminate_signal;
 
     /* The number of implemented methods. */
-    const int count = 11;
+    const int count = 14;
 
     /* The first tabstop. */
     const int tab1 = 2;
@@ -2312,37 +2312,49 @@ void nwipe_gui_method( void )
     {
         focus = 2;
     }
-    if( nwipe_options.method == &nwipe_dodshort )
+    if( nwipe_options.method == &nwipe_ops2_alt )
     {
         focus = 3;
     }
-    if( nwipe_options.method == &nwipe_dod522022m )
+    if( nwipe_options.method == &nwipe_dodshort )
     {
         focus = 4;
     }
-    if( nwipe_options.method == &nwipe_gutmann )
+    if( nwipe_options.method == &nwipe_dod522022m )
     {
         focus = 5;
     }
-    if( nwipe_options.method == &nwipe_random )
+    if( nwipe_options.method == &nwipe_gutmann )
     {
         focus = 6;
     }
-    if( nwipe_options.method == &nwipe_verify_zero )
+    if( nwipe_options.method == &nwipe_random )
     {
         focus = 7;
     }
-    if( nwipe_options.method == &nwipe_verify_one )
+    if( nwipe_options.method == &nwipe_verify_zero )
     {
         focus = 8;
     }
-    if( nwipe_options.method == &nwipe_is5enh )
+    if( nwipe_options.method == &nwipe_verify_one )
     {
         focus = 9;
     }
-    if ( nwipe_options.method == &nwipe_pfitzner )
+    if( nwipe_options.method == &nwipe_is5enh )
     {
         focus = 10;
+    }
+    if ( nwipe_options.method == &nwipe_pfitzner )
+    {
+        focus = 11;
+    }
+    if( nwipe_options.method == &nwipe_vsitr )
+    {
+        focus = 12;
+    }
+    if( nwipe_options.method == &nwipe_vsitr_alt )
+    {
+        focus = 13;
     }
     do
     {
@@ -2358,6 +2370,7 @@ void nwipe_gui_method( void )
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_zero ) );
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_one ) );
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_ops2 ) );
+        mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_ops2_alt ) );
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_dodshort ) );
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_dod522022m ) );
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_gutmann ) );
@@ -2365,6 +2378,8 @@ void nwipe_gui_method( void )
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_verify_zero ) );
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_verify_one ) );
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_is5enh ) );
+        mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_vsitr ) );
+        mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_vsitr_alt ) );
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_pfitzner) );
         mvwprintw( main_window, yy++, tab1, "                                             " );
 
@@ -2415,8 +2430,21 @@ void nwipe_gui_method( void )
                 mvwprintw( main_window, 9, tab2, "section A of the standard, uses a pattern that is" );
                 mvwprintw( main_window, 10, tab2, "one random byte and that is changed each round.  " );
                 break;
-
+            
             case 3:
+
+                mvwprintw( main_window, 2, tab2, "Security Level: high (9 passes)" );
+
+                mvwprintw( main_window, 4, tab2, "The Royal Canadian Mounted Police Technical      " );
+                mvwprintw( main_window, 5, tab2, "Security Standard for Information Technology.    " );
+                mvwprintw( main_window, 6, tab2, "Appendix OPS-II: Media Sanitization.             " );
+                mvwprintw( main_window, 7, tab2, "                                                 " );
+                mvwprintw( main_window, 8, tab2, "TO CHANGE                                        " );
+                mvwprintw( main_window, 9, tab2, "-------------------------------------------------" );
+                mvwprintw( main_window, 10, tab2, "------------------------------------------------" );
+                break;
+
+            case 4:
 
                 mvwprintw( main_window, 2, tab2, "Security Level: higher (3 passes)" );
 
@@ -2429,7 +2457,7 @@ void nwipe_gui_method( void )
                 mvwprintw( main_window, 10, tab2, "Pass 3: A random number generated data stream    " );
                 break;
 
-            case 4:
+            case 5:
 
                 mvwprintw( main_window, 2, tab2, "Security Level: higher (7 passes)" );
 
@@ -2445,7 +2473,7 @@ void nwipe_gui_method( void )
                 mvwprintw( main_window, 12, tab2, "Pass 7: A random number generated data stream    " );
                 break;
 
-            case 5:
+            case 6:
 
                 mvwprintw( main_window, 2, tab2, "Security Level: Paranoid ! (35 passes)           " );
                 mvwprintw( main_window, 3, tab2, "Don't waste your time with this on a modern drive" );
@@ -2456,7 +2484,7 @@ void nwipe_gui_method( void )
                 mvwprintw( main_window, 8, tab2, "relevant in regards to modern hard disk drives.  " );
                 break;
 
-            case 6:
+            case 7:
 
                 mvwprintw( main_window, 2, tab2, "Security Level: Depends on Rounds" );
 
@@ -2470,7 +2498,7 @@ void nwipe_gui_method( void )
                 mvwprintw( main_window, 11, tab2, "as rounds are increased." );
                 break;
 
-            case 7:
+            case 8:
 
                 mvwprintw( main_window, 2, tab2, "Security Level: Not applicable" );
 
@@ -2479,7 +2507,7 @@ void nwipe_gui_method( void )
 
                 break;
 
-            case 8:
+            case 9:
 
                 mvwprintw( main_window, 2, tab2, "Security Level: Not applicable" );
 
@@ -2488,7 +2516,7 @@ void nwipe_gui_method( void )
 
                 break;
 
-            case 9:
+            case 10:
 
                 mvwprintw( main_window, 2, tab2, "Security Level: higher (3 passes)" );
 
@@ -2501,8 +2529,8 @@ void nwipe_gui_method( void )
                 mvwprintw( main_window, 10, tab2, "device to verify the PRNG stream was             " );
                 mvwprintw( main_window, 11, tab2, "successfully written.                            " );
                 break;
-            
-            case 10:
+
+            case 11:
 
                 mvwprintw( main_window, 2, tab2, "Security Level: higher (7 passes)" );
 
@@ -2518,6 +2546,32 @@ void nwipe_gui_method( void )
                 mvwprintw( main_window, 12, tab2, "Pass 7: Final overwrite with random data.       " );
                 break;
 
+            case 12:
+
+                mvwprintw( main_window, 2, tab2, "Security Level: high (7 passes)" );
+
+                mvwprintw( main_window, 4, tab2, "Bundesamt fur Sicherheit in der IT               " );
+                mvwprintw( main_window, 5, tab2, "Verschlusssache IT Richtlinien (VSITR)           " );
+                mvwprintw( main_window, 6, tab2, "                                                 " );
+                mvwprintw( main_window, 7, tab2, "                                                 " );
+                mvwprintw( main_window, 8, tab2, "Each wipe, in the first 6 Passes, reverses the   " );
+                mvwprintw( main_window, 9, tab2, "bit pattern of previous wipe with an alternation " );
+                mvwprintw( main_window, 10, tab2, "of 0 and 1. The final 7th Pass amplifies the    " );
+                mvwprintw( main_window, 11, tab2, "overwriting effect that writes the letter A.    " );
+                break;
+
+            case 13:
+
+                mvwprintw( main_window, 2, tab2, "Security Level: high (7 passes)" );
+
+                mvwprintw( main_window, 4, tab2, "Bundesamt fur Sicherheit in der IT               " );
+                mvwprintw( main_window, 5, tab2, "Verschlusssache IT Richtlinien (VSITR)           " );
+                mvwprintw( main_window, 6, tab2, "                                                 " );
+                mvwprintw( main_window, 7, tab2, "                                                 " );
+                mvwprintw( main_window, 8, tab2, "Each wipe, in the first 6 Passes, reverses the   " );
+                mvwprintw( main_window, 9, tab2, "bit pattern of previous wipe. The final 7th Pass " );
+                mvwprintw( main_window, 10, tab2, "amplifies the overwriting effect.                " );
+                break;
 
         } /* switch */
 
@@ -2587,31 +2641,43 @@ void nwipe_gui_method( void )
             break;
 
         case 3:
-            nwipe_options.method = &nwipe_dodshort;
+            nwipe_options.method = &nwipe_ops2_alt;
             break;
 
         case 4:
-            nwipe_options.method = &nwipe_dod522022m;
+            nwipe_options.method = &nwipe_dodshort;
             break;
 
         case 5:
-            nwipe_options.method = &nwipe_gutmann;
+            nwipe_options.method = &nwipe_dod522022m;
             break;
 
         case 6:
-            nwipe_options.method = &nwipe_random;
+            nwipe_options.method = &nwipe_gutmann;
             break;
 
         case 7:
-            nwipe_options.method = &nwipe_verify_zero;
+            nwipe_options.method = &nwipe_random;
             break;
 
         case 8:
-            nwipe_options.method = &nwipe_verify_one;
+            nwipe_options.method = &nwipe_verify_zero;
             break;
 
         case 9:
+            nwipe_options.method = &nwipe_verify_one;
+            break;
+
+        case 10:
             nwipe_options.method = &nwipe_is5enh;
+            break;
+
+        case 11:
+            nwipe_options.method = &nwipe_vsitr;
+            break;
+
+        case 12:
+            nwipe_options.method = &nwipe_vsitr_alt;
             break;
         
         case 10:
