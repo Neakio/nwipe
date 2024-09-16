@@ -2378,9 +2378,9 @@ void nwipe_gui_method( void )
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_verify_zero ) );
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_verify_one ) );
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_is5enh ) );
+        mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_pfitzner) );
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_vsitr ) );
         mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_vsitr_alt ) );
-        mvwprintw( main_window, yy++, tab1, "  %s", nwipe_method_label( &nwipe_pfitzner) );
         mvwprintw( main_window, yy++, tab1, "                                             " );
 
         /* Print the cursor. */
