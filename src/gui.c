@@ -2673,15 +2673,16 @@ void nwipe_gui_method( void )
             break;
 
         case 11:
+            nwipe_options.method = &nwipe_pfitzner;
+
+        case 12:
             nwipe_options.method = &nwipe_vsitr;
             break;
 
-        case 12:
+        case 13:
             nwipe_options.method = &nwipe_vsitr_alt;
             break;
-        
-        case 10:
-            nwipe_options.method = &nwipe_pfitzner;
+
     }
 
 } /* nwipe_gui_method */
